@@ -1,0 +1,122 @@
+body {
+  margin: 0px;
+}
+#root {
+  height: 100%;
+}
+.map {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  transition: 0.2s;
+  z-index: 1;
+}
+.locateBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+}
+.search-wrapper,
+.formWrapper {
+  width: 400px;
+  padding: 15px;
+  background-color: rgb(245, 245, 245);
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: 0.2s;
+  float: left;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  border: 1px solid #cccccc;
+  height: 100%;
+  z-index: 10;
+}
+.countriesList {
+  overflow: auto;
+  max-height: calc(100% - 120px);
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  border: 1px solid #cccccc;
+}
+.countriesList .list-group-item {
+  text-align: left;
+}
+.countriesList .list-group-item > img,
+.flag {
+  width: 25px;
+  margin-right: 8px;
+}
+.flag {
+  width: 30px;
+  margin-right: 8px;
+}
+
+.search-form {
+  width: 100%;
+  float: left;
+  margin: 15px 0;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.centerCountry {
+  float: right;
+  padding: 0 5px 2px;
+  border-radius: 50%;
+}
+
+.leaflet-top.leaflet-left {
+  left: initial !important;
+  right: 20px !important;
+  top: 70px;
+}
+
+.leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 2px;
+  -o-box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+.leaflet-popup-content {
+  margin: 0;
+  line-height: 1.4;
+}
+.leaflet-container a.leaflet-popup-close-button {
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  line-height: 26px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0;
+  color: #fff;
+  font-size: 1.5em;
+  display: block;
+  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  font-weight: 700;
+  top: 4px;
+  right: 5px;
+  z-index: 8 !important;
+  transform-origin: 50% 50%;
+  transform: rotate(0deg);
+  transition: all 0.15s ease-in-out;
+}
+.card {
+  border: none;
+}
+.card-body {
+  padding: 0.5rem;
+}
+.card-body ul {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+}
