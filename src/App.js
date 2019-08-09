@@ -3,21 +3,15 @@ import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import Countries from "./Countries";
+import CardContent from "./CardContent";
 //import Flag from "./Flag";
 //import Search from "./Search";
 import {
-  InputGroup,
-  Input,
   Card,
   CardImg,
   CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  ButtonGroup
+  Button
 } from "reactstrap";
-import { FaSearchPlus } from "react-icons/fa";
-//import Countries from './Countries'
 import "./App.css";
 
 var myIcon = L.icon({
@@ -84,7 +78,6 @@ class App extends Component {
   };
 
   countryInfo = obj => {
-    console.log(obj);
     this.setState({
       message: obj.name,
       flag: obj.flag,
@@ -96,7 +89,6 @@ class App extends Component {
   };
 
   centerCountry = obj => {
-    console.log(obj);
     this.setState({
       location: {
         lat: obj.latlng[0],
@@ -128,11 +120,6 @@ class App extends Component {
           />
           <Marker position={this.state.location} icon={myIcon}>
             <Popup>
-              {/* <ButtonGroup size="sm">
-                <Button onClick={this.zoomInCountry}>
-                  <FaSearchPlus />
-                </Button>
-              </ButtonGroup> */}
               <Card>
                 <CardImg
                   top
@@ -142,34 +129,7 @@ class App extends Component {
                   alt="Card image cap"
                 />
                 <CardBody>
-                  <ul>
-                    <li>
-                      <b>Country:</b>
-                      {this.state.message}
-                    </li>
-                    <li>
-                      <b>Population:</b>
-                      {this.state.population}
-                    </li>
-                    <li>
-                      <b>Capital:</b>
-                      {this.state.capital}
-                    </li>
-                    <li>
-                      <b>Region:</b>
-                      {this.state.region}
-                    </li>
-                    <li>
-                      <b>Language:</b>
-                      {this.state.language}
-                    </li>
-                  </ul>
-                  {/* <CardTitle>
-                    <b>Country:</b> {this.state.message}
-                  </CardTitle>
-                  <CardSubtitle>
-                    <b>Population:</b> {this.state.population}
-                  </CardSubtitle> */}
+                  <CardContent value={this.state} />
                 </CardBody>
               </Card>
             </Popup>
@@ -178,19 +138,11 @@ class App extends Component {
         <Button className="locateBtn" onClick={this.locateMe} color="primary">
           Locate Me
         </Button>{" "}
-        <div className="search-wrapper">
-          <h2>Countries</h2>
-          {/* <Search filter={this.handleSeach}/> */}
-          <InputGroup className="search-form">
-            <Input onChange={this.onSearchChange} placeholder="Search" />
-          </InputGroup>
-          <Countries
-            countries={this.state.countries}
-            searchText={this.state.searchText}
-            centerCountry={this.centerCountry}
-            countriesLoaded={this.countriesLoaded}
-          />
-        </div>
+        <Countries
+          state={this.state}
+          centerCountry={this.centerCountry}
+          onSearchChange={this.onSearchChange}
+        />
       </div>
     );
   }

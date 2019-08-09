@@ -1,49 +1,25 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+import { ListGroup, ListGroupItem, InputGroup, Input } from "reactstrap";
 import Flag from "./Flag";
 import { Button, Spinner } from "reactstrap";
 //import Search from "./Search";
 import { FaCrosshairs } from "react-icons/fa";
 
 const Countries = ({
-  countries,
-  searchText,
+  state,
   centerCountry,
-  countriesLoaded
+  onSearchChange
 }) => {
-  //console.log(countries);
-  //console.log(searchText);
-  //searchText = 'AFG';
-  searchText = searchText.trim().toLowerCase();
-  const lowerCasedSearchText = searchText.toLowerCase();
-  const filtered = countries.filter(item => {
-    return item.name.toLowerCase().match(lowerCasedSearchText);
+ 
+  const text = state.searchText.trim().toLowerCase();
+  const lowerCasedText = text.toLowerCase();
+  const filtered = state.countries.filter(item => {
+    return item.name.toLowerCase().match(lowerCasedText);
   });
-  // const country = this.props.countriesLoaded ? (
-  //   <ListGroup className="countriesList">
-  //     {filtered.map(item => (
-  //       <ListGroupItem key={item.name}>
-  //         <Flag flag={item.flag} /> {item.name}
-  //         <Button color="primary" className="centerCountry">
-  //           <FaCrosshairs
-  //             onClick={() => {
-  //               centerCountry(item);
-  //             }}
-  //           />
-  //         </Button>
-  //       </ListGroupItem>
-  //     ))}
-  //   </ListGroup>
-  // ) : (
-  //     "hello"
-  // )
 
-  return (
-    <ListGroup className="countriesList">
-      {!filtered ? (
-        <Spinner color="dark" />
-      ) : (
-        filtered.map(item => (
+  const country = state.countriesLoaded ? (
+      <ListGroup className="countriesList">
+        {filtered.map(item => (
           <ListGroupItem key={item.name}>
             <Flag flag={item.flag} /> {item.name}
             <Button color="primary" className="centerCountry">
@@ -54,9 +30,21 @@ const Countries = ({
               />
             </Button>
           </ListGroupItem>
-        ))
-      )}
-    </ListGroup>
+        ))}
+      </ListGroup>
+   
+  ) : (
+      "Loading Countries ..."
+  )
+  
+  return (
+    <div className="search-wrapper">
+      <h2>Countries</h2>
+      <InputGroup className="search-form">
+        <Input onChange={onSearchChange} placeholder="Search" />
+      </InputGroup>
+      {country}
+    </div>
   );
 };
 
