@@ -61,6 +61,8 @@ class App extends Component {
             countriesLoaded: true,
             countries: result
           });
+          console.log("+++++++++++ countries:", result );
+          this.locateMe();
         },
         error => {
           this.setState({
@@ -84,7 +86,7 @@ class App extends Component {
       population: obj.population,
       capital: obj.capital,
       region: obj.region,
-      language: obj.languages.name
+      language: obj.languages
     });
   };
 
