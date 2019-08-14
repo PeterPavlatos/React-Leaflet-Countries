@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import Countries from "./Countries";
+import CountryContextProvider from './contexts/CountryContext';
 import CardContent from "./CardContent";
 //import Flag from "./Flag";
 //import Search from "./Search";
@@ -30,8 +31,6 @@ class App extends Component {
     },
     message: "Great Britan",
     zoom: 3,
-    countries: [],
-    countriesLoaded: false,
     error: null,
     searchText: "",
     flag: "https://restcountries.eu/data/gbr.svg",
@@ -51,27 +50,6 @@ class App extends Component {
       });
     });
   };
-
-  componentDidMount() {
-    fetch("https://restcountries.eu/rest/v2/all")
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            countriesLoaded: true,
-            countries: result
-          });
-          console.log("+++++++++++ countries:", result );
-          this.locateMe();
-        },
-        error => {
-          this.setState({
-            countriesLoaded: true,
-            error
-          });
-        }
-      );
-  }
 
   onSearchChange = e => {
     this.setState({
@@ -115,36 +93,38 @@ class App extends Component {
     return (
       <div className="App">
         {/* <MapWrapper props={this.state} /> */}
-        <Map className="map" center={center} zoom={this.state.zoom}>
-          <TileLayer
-            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        <CountryContextProvider>
+          <Map className="map" center={center} zoom={this.state.zoom}>
+            <TileLayer
+              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={this.state.location} icon={myIcon}>
+              <Popup>
+                <Card>
+                  <CardImg
+                    top
+                    width="100%"
+                    height="75px"
+                    src={this.state.flag}
+                    alt="Card image cap"
+                  />
+                  <CardBody>
+                    <CardContent value={this.state} />
+                  </CardBody>
+                </Card>
+              </Popup>
+            </Marker>
+          </Map>
+          <Button className="locateBtn" onClick={this.locateMe} color="primary">
+            Locate Me
+          </Button>{" "}
+          <Countries
+            searchText={this.state.searchText}
+            centerCountry={this.centerCountry}
+            onSearchChange={this.onSearchChange}
           />
-          <Marker position={this.state.location} icon={myIcon}>
-            <Popup>
-              <Card>
-                <CardImg
-                  top
-                  width="100%"
-                  height="75px"
-                  src={this.state.flag}
-                  alt="Card image cap"
-                />
-                <CardBody>
-                  <CardContent value={this.state} />
-                </CardBody>
-              </Card>
-            </Popup>
-          </Marker>
-        </Map>
-        <Button className="locateBtn" onClick={this.locateMe} color="primary">
-          Locate Me
-        </Button>{" "}
-        <Countries
-          state={this.state}
-          centerCountry={this.centerCountry}
-          onSearchChange={this.onSearchChange}
-        />
+        </CountryContextProvider>
       </div>
     );
   }

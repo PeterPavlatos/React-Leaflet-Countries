@@ -1,23 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
 import { ListGroup, ListGroupItem, InputGroup, Input } from "reactstrap";
 import Flag from "./Flag";
-import { Button, Spinner } from "reactstrap";
+import { Button } from "reactstrap";
 //import Search from "./Search";
 import { FaCrosshairs } from "react-icons/fa";
+import { CountryContext } from './contexts/CountryContext';
 
 const Countries = ({
-  state,
+  searchText,
   centerCountry,
   onSearchChange
 }) => {
  
-  const text = state.searchText.trim().toLowerCase();
+  const { countries, countriesLoaded } = useContext(CountryContext);
+  const text = searchText.trim().toLowerCase();
   const lowerCasedText = text.toLowerCase();
-  const filtered = state.countries.filter(item => {
+  const filtered = countries.filter(item => {
     return item.name.toLowerCase().match(lowerCasedText);
   });
 
-  const country = state.countriesLoaded ? (
+  const country = countriesLoaded ? (
       <ListGroup className="countriesList">
         {filtered.map(item => (
           <ListGroupItem key={item.name}>
