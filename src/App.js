@@ -73,7 +73,8 @@ class App extends Component {
       location: {
         lat: obj.latlng[0],
         lng: obj.latlng[1]
-      }
+      },
+      zoom: 3
     });
     this.countryInfo(obj);
   };
