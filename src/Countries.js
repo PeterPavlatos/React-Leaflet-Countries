@@ -1,8 +1,7 @@
 import React, {useContext} from "react";
-import { ListGroup, ListGroupItem, InputGroup, Input } from "reactstrap";
+import { ListGroup, ListGroupItem } from "reactstrap";
 import Flag from "./Flag";
-import { Button } from "reactstrap";
-//import Search from "./Search";
+import Search from "./Search";
 import { FaCrosshairs } from "react-icons/fa";
 import { CountryContext } from './contexts/CountryContext';
 
@@ -24,13 +23,11 @@ const Countries = ({
         {filtered.map(item => (
           <ListGroupItem key={item.name}>
             <Flag flag={item.flag} /> {item.name}
-            <Button color="primary" className="centerCountry">
-              <FaCrosshairs
+              <FaCrosshairs className="centerCountry"
                 onClick={() => {
                   centerCountry(item);
                 }}
               />
-            </Button>
           </ListGroupItem>
         ))}
       </ListGroup>
@@ -42,9 +39,7 @@ const Countries = ({
   return (
     <div className="search-wrapper">
       <h2>Countries</h2>
-      <InputGroup className="search-form">
-        <Input onChange={onSearchChange} placeholder="Search" />
-      </InputGroup>
+      <Search onSearchChange={onSearchChange} />
       {country}
     </div>
   );
