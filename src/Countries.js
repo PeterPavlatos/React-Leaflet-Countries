@@ -4,14 +4,15 @@ import Flag from "./Flag";
 import Search from "./Search";
 import { FaCrosshairs } from "react-icons/fa";
 import { CountryContext } from './contexts/CountryContext';
+import { SearchContext } from './contexts/SearchContext';
 
 const Countries = ({
-  searchText,
-  centerCountry,
-  onSearchChange
+  centerCountry
 }) => {
  
   const { countries, countriesLoaded } = useContext(CountryContext);
+  const { searchText } = useContext(SearchContext);
+
   const text = searchText.trim().toLowerCase();
   const lowerCasedText = text.toLowerCase();
   const filtered = countries.filter(item => {
@@ -39,7 +40,7 @@ const Countries = ({
   return (
     <div className="search-wrapper">
       <h2>Countries</h2>
-      <Search onSearchChange={onSearchChange} />
+      <Search />
       {country}
     </div>
   );
