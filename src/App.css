@@ -18,7 +18,31 @@ body {
   top: 20px;
   right: 20px;
   z-index: 2;
+  width: 34px;
+    height: 34px;
+  line-height: 16px;
+  border-radius: 0;
+  background-color: #fff;
+  padding:0;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
 }
+.locateBtn:hover {
+  background-color: #f4f4f4;
+}
+.btnSearchInputClear {
+  padding: 10px;
+  border-radius: 0;
+  cursor:pointer;
+}
+/* .locateBtn:hover  > svg {
+ color: #000;
+}
+.locateBtn > svg{
+  color: #000;
+} */
 .search-wrapper,
 .formWrapper {
   width: 400px;

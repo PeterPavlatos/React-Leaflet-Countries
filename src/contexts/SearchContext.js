@@ -7,7 +7,15 @@ class SearchContextProvider extends Component {
         searchText: ""
     }
 
+    clearSearchText = e => {
+        e.preventDefault();
+        this.setState({
+            searchText: ""
+        });
+    }
+
     onSearchChange = e => {
+        e.preventDefault();
         console.log("+++++++++++++++ onSearchChange", e.target.value);
         this.setState({
           searchText: e.target.value
@@ -16,7 +24,7 @@ class SearchContextProvider extends Component {
     
     render() {
         return (
-            <SearchContext.Provider value={{...this.state, onSearchChange: this.onSearchChange}}>
+            <SearchContext.Provider value={{...this.state, onSearchChange: this.onSearchChange, clearSearchText: this.clearSearchText}}>
                 {this.props.children}
             </SearchContext.Provider>
         )

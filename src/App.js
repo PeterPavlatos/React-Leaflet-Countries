@@ -5,6 +5,7 @@ import Countries from "./Countries";
 import CountryContextProvider from './contexts/CountryContext';
 import SearchContextProvider from "./contexts/SearchContext";
 import CardContent from "./CardContent";
+import { FaCrosshairs } from "react-icons/fa";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import "./App.css";
 
@@ -26,7 +27,10 @@ class App extends Component {
     zoom: 3,
     error: null,
     flag: "https://restcountries.eu/data/gbr.svg",
-    population: 65110000
+    population: 65110000,
+    capital: "London",
+    region: "Europe",
+    languages: "English"
   };
 
   locateMe = () => {
@@ -104,12 +108,10 @@ class App extends Component {
                     </Popup>
                   </Marker>
                 </Map>
-                <Button className="locateBtn" onClick={this.locateMe} color="primary">
-                  Locate Me
+                <Button className="locateBtn" onClick={this.locateMe}>
+                  <FaCrosshairs />
                 </Button>{" "}
-                <Countries
-                  centerCountry={this.centerCountry}
-                />
+                <Countries centerCountry={this.centerCountry}/>
             </SearchContextProvider>
         </CountryContextProvider>
       </div>

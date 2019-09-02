@@ -1,9 +1,14 @@
 import React from 'react'
 
 const CardContent = ({value}) => {
-    const languages = value.language.map(item => (
-        <span key={value.language.indexOf(item)}>{item.name}, </span>
-    ));
+    console.log("++++++++++++++++ value", value);
+    const languages = !value.language ? (
+        <span>English</span>
+    ) : (
+        value.language.map(item => (
+            <span key={value.language.indexOf(item)}>{item.name}, </span>
+        ))
+    )
     return (
         <ul>
             <li>
