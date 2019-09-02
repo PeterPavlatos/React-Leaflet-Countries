@@ -7,8 +7,9 @@ class SearchContextProvider extends Component {
         searchText: ""
     }
 
-    clearSearchText = e => {
-        e.preventDefault();
+    clearSearchText = () => {
+        
+        console.log("+++++++++++++++ clearSearchText");
         this.setState({
             searchText: ""
         });
@@ -16,7 +17,7 @@ class SearchContextProvider extends Component {
 
     onSearchChange = e => {
         e.preventDefault();
-        console.log("+++++++++++++++ onSearchChange", e.target.value);
+        //console.log("+++++++++++++++ onSearchChange", e.target.value);
         this.setState({
           searchText: e.target.value
         });

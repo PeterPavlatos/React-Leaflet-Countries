@@ -8,7 +8,7 @@ const Search = () => {
   const { searchText, onSearchChange, clearSearchText } = useContext(SearchContext);
 
   const test = searchText.length ? (
-      <InputGroupAddon>
+      <InputGroupAddon addonType="append">
           <InputGroupText onClick={clearSearchText} className="btnSearchInputClear"><FaTimes/></InputGroupText> 
       </InputGroupAddon>
    ) : (
@@ -16,7 +16,7 @@ const Search = () => {
    )
     return (
       <InputGroup className="search-form">
-        <Input onChange={onSearchChange} placeholder="Search" />
+        <Input value={searchText} onChange={onSearchChange} placeholder="Search" />
         {test}
       </InputGroup>
     );
