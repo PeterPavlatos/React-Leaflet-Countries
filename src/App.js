@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
-import Countries from "./Countries";
+import Countries from "./components/Countries";
 import CountryContextProvider from './contexts/CountryContext';
 import SearchContextProvider from "./contexts/SearchContext";
-import CardContent from "./CardContent";
+import CardContent from "./components/CardContent";
 import { FaCrosshairs } from "react-icons/fa";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import "./App.css";
+import ToggleFormContextProvider from "./contexts/ToggleFormContext";
 
 var myIcon = L.icon({
   iconUrl:
@@ -111,7 +112,9 @@ class App extends Component {
                 <Button className="locateBtn" onClick={this.locateMe}>
                   <FaCrosshairs />
                 </Button>{" "}
-                <Countries centerCountry={this.centerCountry}/>
+                <ToggleFormContextProvider>
+                  <Countries centerCountry={this.centerCountry}/>
+                </ToggleFormContextProvider>
             </SearchContextProvider>
         </CountryContextProvider>
       </div>
