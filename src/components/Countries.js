@@ -40,13 +40,13 @@ const Countries = ({
   )
 
   const btnIcon = collapse ? (
-      <FaCaretLeft/>
-    ) : (
       <FaCaretRight/>
+    ) : (
+      <FaCaretLeft/>
     );
   
   return (
-    <div className="search-wrapper">
+    <div className={collapse ? "close-wrapper search-wrapper" : "search-wrapper"}>
       <button className="btnToggleWrapper" onClick={toggleForm}>
         {btnIcon}
       </button>

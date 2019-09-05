@@ -57,8 +57,9 @@ body {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
 }
 .btnToggleWrapper > svg {
-margin-left: -5px;
+  margin-left: -5px;
 }
+
 .search-wrapper,
 .formWrapper {
   width: 400px;
@@ -75,6 +76,11 @@ margin-left: -5px;
   border: 1px solid #cccccc;
   height: 100%;
   z-index: 10;
+  transition: .2s;
+}
+.search-wrapper.close-wrapper {
+  left: -400px;
+  transition: .2s;
 }
 .countriesList {
   overflow: auto;
