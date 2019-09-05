@@ -173,3 +173,30 @@ body {
   margin: 0;
   list-style-type: none;
 }
+
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+  .search-wrapper {
+    width: 50%;
+  }
+  .search-wrapper.close-wrapper {
+    left: -50%;
+  }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .search-wrapper {
+    width: 50%;
+  }
+  .search-wrapper.close-wrapper {
+    left: -50%;
+  }
+  .search-wrapper h2 {
+    font-size:24px;
+  }
+  .countriesListName {
+    display:none;
+  }
+}

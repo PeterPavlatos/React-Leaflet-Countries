@@ -25,12 +25,15 @@ const Countries = ({
       <ListGroup className="countriesList">
         {filtered.map(item => (
           <ListGroupItem key={item.name}>
-            <Flag flag={item.flag} /> {item.name}
-              <FaCrosshairs className="centerCountry"
-                onClick={() => {
-                  centerCountry(item);
-                }}
-              />
+            <Flag flag={item.flag} /> 
+            <span className="countriesListName">
+              {item.name}       
+            </span>
+            <FaCrosshairs className="centerCountry"
+              onClick={() => {
+                centerCountry(item);
+              }}
+            />
           </ListGroupItem>
         ))}
       </ListGroup>
