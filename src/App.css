@@ -32,6 +32,9 @@ body {
 .locateBtn:hover {
   background-color: #f4f4f4;
 }
+.locateBtn:hover > svg {
+  color: black;
+}
 .btnSearchInputClear {
   padding: 10px;
   border-radius: 0;

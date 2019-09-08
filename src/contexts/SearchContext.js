@@ -8,8 +8,7 @@ class SearchContextProvider extends Component {
     }
 
     clearSearchText = () => {
-        
-        console.log("+++++++++++++++ clearSearchText");
+        //console.log("+++++++++++++++ clearSearchText");
         this.setState({
             searchText: ""
         });

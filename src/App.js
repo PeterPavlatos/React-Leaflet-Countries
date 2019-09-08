@@ -5,8 +5,8 @@ import Countries from "./components/Countries";
 import CountryContextProvider from './contexts/CountryContext';
 import SearchContextProvider from "./contexts/SearchContext";
 import CardContent from "./components/CardContent";
-import { FaCrosshairs } from "react-icons/fa";
-import { Card, CardImg, CardBody, Button } from "reactstrap";
+import GeoLocateBtn from "./components/GeoLocateBtn";
+import { Card, CardImg, CardBody, Button, Tooltip } from "reactstrap";
 import "./App.css";
 import ToggleFormContextProvider from "./contexts/ToggleFormContext";
 
@@ -109,10 +109,8 @@ class App extends Component {
                     </Popup>
                   </Marker>
                 </Map>
-                <Button className="locateBtn" onClick={this.locateMe}>
-                  <FaCrosshairs />
-                </Button>{" "}
                 <ToggleFormContextProvider>
+                  <GeoLocateBtn locateMe={this.locateMe}/>
                   <Countries centerCountry={this.centerCountry}/>
                 </ToggleFormContextProvider>
             </SearchContextProvider>

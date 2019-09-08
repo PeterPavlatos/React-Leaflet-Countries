@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { ListGroup, ListGroupItem } from "reactstrap";
+import { ListGroup, ListGroupItem, Tooltip } from "reactstrap";
 import Flag from "./Flag";
 import Search from "./Search";
 import { FaCrosshairs, FaCaretRight, FaCaretLeft } from "react-icons/fa";
@@ -13,7 +13,7 @@ const Countries = ({
  
   const { countries, countriesLoaded } = useContext(CountryContext);
   const { searchText } = useContext(SearchContext);
-  const { toggleForm, collapse } = useContext(ToggleFormContext);
+  const { toggleForm, collapse, toggleTooltip, tooltip } = useContext(ToggleFormContext);
 
   const text = searchText.trim().toLowerCase();
   const lowerCasedText = text.toLowerCase();
@@ -47,12 +47,21 @@ const Countries = ({
     ) : (
       <FaCaretLeft/>
     );
+
+  const tooltipText = collapse ? (
+    "Open"
+  ) : (
+    "Close"
+  )
   
   return (
     <div className={collapse ? "close-wrapper search-wrapper" : "search-wrapper"}>
-      <button className="btnToggleWrapper" onClick={toggleForm}>
+      <button id="btnSearchWrapperToggle" className="btnToggleWrapper" onClick={toggleForm}>
         {btnIcon}
       </button>
+      <Tooltip placement="right" isOpen={tooltip} autohide={false} target="btnSearchWrapperToggle" toggle={toggleTooltip}>
+          {tooltipText}
+      </Tooltip>
       <h2>Countries</h2>
       <Search />
       {country}
